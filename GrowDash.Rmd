@@ -1,0 +1,71 @@
+---
+title: "GrowDash"
+author: "Jordan Arlan"
+date: "4/18/2019"
+output: 
+    flexdashboard::flex_dashboard:
+    orientation: rows
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+#install.packages(c(" "))
+library(dygraphs)
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(DT)
+```
+
+```{r include=FALSE}
+carData <- as.data.frame(mtcars)
+
+```
+
+Eviermental sensors 
+===================================== 
+Tempature
+-------------------------------------
+###Tempature in grow
+    
+```{r}
+ggplot(carData, aes(x = mpg, y = hp, color = am)) + geom_point()
+```
+    
+    
+Reitive Humidity {.tabset .tabset-fade}
+------------------------------------
+
+### Chart 2
+
+```{r}
+set.seed(100)
+d <- diamonds[sample(nrow(diamonds), 1000), ]
+
+p <- ggplot(data = d, aes(x = carat, y = price)) +
+  geom_point(aes(text = paste("Clarity:", clarity)), size = 4) +
+  geom_smooth(aes(colour = cut, fill = cut)) + facet_wrap( cut ~, nrow = 5)
+
+```
+   
+### Chart 3
+
+```{r}
+ggplot(carData, aes(x = mpg, y = wt, color = carb)) + geom_point()
+```
+
+
+Page 2
+===================================== 
+
+### Chart 1
+    
+```{r fig.height=4, fig.width=20}
+ggplotly(p)
+```
+    
+### Chart 2
+
+```{r fig.height=5, fig.width=25}
+ggplot(carData, aes(x = mpg, y = hp, color = am)) + geom_point()
+```
