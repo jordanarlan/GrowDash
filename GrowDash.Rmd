@@ -1,0 +1,59 @@
+---
+title: "GrowDash"
+author: "Jordan Arlan"
+date: "4/18/2019"
+output: 
+    flexdashboard::flex_dashboard:
+    orientation: rows
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+#install.packages(c(" "))
+library(dygraphs)
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(DT)
+```
+
+```{r include=FALSE}
+carData <- as.data.frame(mtcars)
+
+```
+
+Eviermental sensors 
+===================================== 
+Tempature
+-------------------------------------
+###Tempature in grow
+    
+```{r}
+Z <- ggplot(carData, aes(x = mpg, y = hp, color = am)) + geom_point()
+ggplotly(Z)
+```
+    
+    
+Reitive Humidity {.tabset .tabset-fade}
+------------------------------------
+
+   
+### Chart 3
+
+```{r}
+
+V <- ggplot(carData, aes(x = mpg, y = wt, color = carb)) + geom_point()
+
+ggplotly(V)
+```
+
+
+Page 2
+===================================== 
+
+### Chart 1
+    
+```{r fig.height=4, fig.width=20}
+ggplotly(ggplot(carData, aes(x = mpg)) + geom_histogram())
+```
+    
